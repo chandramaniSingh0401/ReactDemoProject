@@ -1,0 +1,11 @@
+@Repository
+public class CustomerRepositoryImpl implements CustomerRepository {
+   @Autowired
+   private JdbcTemplate jdbcTemplate;
+   @Override
+   public List<Customer> getAllCustomers() {
+       String sql = "SELECT * FROM customers";
+       return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
+   }
+   // other methods for customer repository
+}
